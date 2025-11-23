@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { useMutation, useQuery } from '@tanstack/react-query'
+import { createShortUrl } from '../api/shortUrl.api'
 
 const UrlForm = () => {
   const [longUrl, setLongUrl] = useState('')
@@ -18,15 +19,14 @@ const UrlForm = () => {
     setCopied(false)
 
     try {
-      const {data} = await axios.post("http://localhost:3000/api/create",{url})
-      setShortUrl(data)
+      const shortUrl = await createShortUrl(url)
+      setShortUrl(shortUrl)
     } catch (error) {
       setError(error.response?.data?.message || "Failed to shorten URL")
     }
     setLoading(false)
   }
 
-  const query = useQuery({ queryKey: ['todos'], queryFn: handleSubmit })
 
   const handleCopy = () => {
     if (shortUrl) {
@@ -35,14 +35,6 @@ const UrlForm = () => {
       setTimeout(() => setCopied(false), 2000)
     }
   }
-
-    const mutation = useMutation({
-    mutationFn: handleSubmit,
-    onSuccess: () => {
-      // Invalidate and refetch
-      queryClient.invalidateQueries({ queryKey: ['todos'] })
-    },
-  })
 
   return (
     <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
