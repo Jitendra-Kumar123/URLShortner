@@ -1,4 +1,3 @@
-import axios from "axios"
 import axiosInstance from "../utils/axiosInstance"
 
 export const createShortUrl = async function(url) {

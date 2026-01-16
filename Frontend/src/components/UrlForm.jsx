@@ -1,6 +1,4 @@
 import React, { useState } from 'react'
-import axios from 'axios'
-import { useMutation, useQuery } from '@tanstack/react-query'
 import { createShortUrl } from '../api/shortUrl.api'
 
 const UrlForm = () => {
@@ -12,6 +10,8 @@ const UrlForm = () => {
   const [url, setUrl] = useState('')
 
   const handleSubmit = async (e) => {
+    const shortUrl = await createShortUrl(url)
+    setShortUrl(shortUrl)
     e.preventDefault()
     setLoading(true)
     setError('')
@@ -26,7 +26,6 @@ const UrlForm = () => {
     }
     setLoading(false)
   }
-
 
   const handleCopy = () => {
     if (shortUrl) {
