@@ -10,7 +10,7 @@ export const createShortUrlWithoutUser = async function(url){
     await saveShortUrl(shortUrl, url)
     return shortUrl
 }
-export const createShortUrlWithUser = async function(url, userId){
+export const createShortUrlWithUser = async function(url, userId, slug=null){
     const shortUrl = await generateNanoId(7);
     await saveShortUrl(shortUrl, url, userId)
     return shortUrl

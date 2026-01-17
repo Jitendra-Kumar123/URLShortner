@@ -3,7 +3,6 @@ import mongoose from "mongoose";
 const connectDB = async () => {
     try {
         const conn = await mongoose.connect(process.env.MONGO_URI, {
-            // fail faster if mongo is unreachable
             serverSelectionTimeoutMS: 5000,
             connectTimeoutMS: 10000,
         });

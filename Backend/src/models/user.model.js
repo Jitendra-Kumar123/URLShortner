@@ -15,9 +15,19 @@ const userSchema = new mongoose.Schema({
     },
     avatar: {
         type: String,
-        require: true
-    }
-})
+        require: false,
+        default: function(){
+            return getGravatarUrl(this.email);
+        },
+    },
+});
+
+function getGravatarUrl(email){
+    const hash = require('crypto')
+    .createHash('md5')
+    .update(email.trim().toLowerCase())
+    .digest('hex');
+}
 
 const User = mongoose.model("User", userSchema);
 

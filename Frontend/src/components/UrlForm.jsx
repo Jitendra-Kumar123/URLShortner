@@ -15,7 +15,7 @@ const UrlForm = () => {
     e.preventDefault()
     setLoading(true)
     setError('')
-    setShortUrl('')
+    setShortUrl('')  
     setCopied(false)
 
     try {

@@ -1,11 +1,11 @@
 import express from "express";
-import User from "../models/user.model.js";
-import { gravatar } from "../utils/gravatar.js";
-import bcrypt from "bcrypt";
-import { register_user } from "../controller/auth.controller.js";
-import { login_user } from "../controller/auth.controller.js";
-
+import { register_user, login_user } from "../controller/auth.controller.js";
 const router = express.Router();
+
+router.post("/register", register_user)
+router.post("/login", login_user)
+
+export default router;
 
 // Register new user
 // router.post("/register", async (req, res) => {
@@ -45,8 +45,3 @@ const router = express.Router();
 //     return res.status(500).json({ message: "Internal server error" });
 //   }
 // });
-
-router.post("/register", register_user)
-router.post("/register", login_user)
-
-export default router;
