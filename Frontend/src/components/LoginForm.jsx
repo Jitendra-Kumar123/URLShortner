@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import { loginUser } from '../api/user.api'
-import RegisterForm from './RegisterForm'
+import { useSelector } from 'react-redux'
+import { Link } from '@tanstack/react-router'
 
 const LoginForm = ({state}) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+  const auth = useSelector((state) => state.auth);
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -56,6 +58,7 @@ const LoginForm = ({state}) => {
           className="w-full bg-[#155DFC] text-white py-2 px-4 rounded-md hover:bg-[#0D4BB5] focus:outline-none focus:ring-2 focus:ring-[#155DFC] focus:ring-offset-2 disabled:opacity-50"
         >
           {loading ? 'Logging in...' : 'Login'}
+          <Link to="/RegisterForm.jsx" className='bg-blue-500 px-4 py-2 rounded-2xl'>Don't have an account? Register</Link>
         </button>
       </form>
     </div>
