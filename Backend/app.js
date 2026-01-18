@@ -9,13 +9,21 @@ import dotenv from "dotenv";
 import { redirectFromShortUrl } from "./src/controller/short_url.controller.js";
 import { errorHandler } from "./src/utils/errorHandler.js";
 import cors from "cors"
+import { attachUser } from "./src/utils/attachUser.js";
+import cookieParser from "cookie-parser";
 
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:5173',
+    credentials: true
+}));
 
 dotenv.config("./.env");
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+
+app.use(attachUser)
+app.use(cookieParser())
 
 app.use("/api/auth", auth_routes);
 app.use("/api/create", short_url);

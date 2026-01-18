@@ -1,8 +1,6 @@
-# TODO for URL Shortener UI
+# TODO for Login and Register Forms
 
-- [x] Update App.jsx to include form for URL input, shorten button, and display for short URL
-- [x] Add state for longUrl and shortUrl using useState
-- [x] Implement handleSubmit function to make POST request to backend /api/create
-- [x] Handle response to set shortUrl state
-- [x] Add basic styling for the UI
-- [x] Test the UI by running the frontend
+- [x] Update LoginForm.jsx: Create a simple form with email and password input fields, submit button, and basic state management using useState. On form submission, call the loginUser API function.
+- [x] Update RegisterForm.jsx: Create a simple form with name, email, and password input fields, submit button, and basic state management using useState. On form submission, call the registerUser API function.
+- [x] Apply basic Tailwind CSS classes for layout and styling (e.g., centering, padding, borders) to make the forms visually simple and functional.
+- [x] Include basic form validation (e.g., required fields) and error handling (e.g., display API errors).
