@@ -3,6 +3,7 @@ const app = express();
 import { nanoid } from "nanoid";
 import connectDB from "./src/config/mongo.config.js";
 import urlSchema from "./src/models/short_url.model.js";
+import user_routes from "./src/routes/user.route.js";
 import auth_routes from "./src/routes/auth.routes.js";
 import short_url from "./src/routes/short_url.route.js";
 import dotenv from "dotenv";
@@ -25,6 +26,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(attachUser)
 app.use(cookieParser())
 
+app.use("/api/user", user_routes);
 app.use("/api/auth", auth_routes);
 app.use("/api/create", short_url);
 app.get("/:id", redirectFromShortUrl);

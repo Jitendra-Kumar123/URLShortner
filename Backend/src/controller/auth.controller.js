@@ -20,3 +20,11 @@ export const login_user = wrapAsync (async function(req, res){
     res.status(200).json({message: "login success"})
 })
 
+export const logout_user = wrapAsync(async function(req, res){
+    const token = (token, "");
+    res.cookie = "";
+})
+
+export const get_current_user = wrapAsync(async (req, res) => {
+    res.status(200).json({user: req.user})
+})

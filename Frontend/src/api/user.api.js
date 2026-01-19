@@ -14,3 +14,8 @@ export const logoutUser = async function() {
    const {data} =  await axiosInstance.get("/api/auth/logout")
    return data
 }
+
+export const get_current_user = async () =>{
+   const {data} = await axiosInstance.get("/api/auth/me")
+   return data
+}

@@ -35,6 +35,9 @@ const UrlForm = () => {
     }
   }
 
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [customSlug, setCustomSlug] = useState('')
+
   return (
     <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
       <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
@@ -42,13 +45,23 @@ const UrlForm = () => {
         <input
           type="url"
           id='url'
-          value={(longUrl, url)}
-          onInput={(e)=>setUrl(e.target.value)}
-          onChange={(e) => setLongUrl(e.target.value)}
+          value={url}
+          onChange={(e) => setUrl(e.target.value)}
           placeholder="Enter your long URL here"
           required
           className="px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
+        
+        {isAuthenticated && (
+          <input
+            type="text"
+            value={customSlug}
+            onChange={(e) => setCustomSlug(e.target.value)}
+            placeholder="Custom slug (optional)"
+            className="px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        )}
+
         <button
           type="submit"
           disabled={loading}
@@ -62,6 +75,7 @@ const UrlForm = () => {
           {error}
         </p>
       )}
+
       {shortUrl && (
         <div className="mt-6 p-4 bg-green-100 rounded-md text-center flex items-center justify-center space-x-3">
           <p className="text-green-800 font-semibold">
