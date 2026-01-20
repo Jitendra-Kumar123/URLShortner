@@ -10,13 +10,14 @@ const UrlForm = () => {
   const [url, setUrl] = useState('')
 
   const handleSubmit = async (e) => {
-    const shortUrl = await createShortUrl(url)
+    const shortUrl = await createShortUrl(url.customSlug)
     setShortUrl(shortUrl)
     e.preventDefault()
     setLoading(true)
     setError('')
     setShortUrl('')  
     setCopied(false)
+    queryClient.invalidateQueries({queryKey: ['userUrls']})
 
     try {
       const shortUrl = await createShortUrl(url)
