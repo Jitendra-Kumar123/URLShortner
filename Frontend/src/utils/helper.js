@@ -1,4 +1,3 @@
-import store from "../store/redux"
 import { redirect } from "@tanstack/react-router";
 
 export const checkAuth = async ({context}) =>{
@@ -10,7 +9,7 @@ export const checkAuth = async ({context}) =>{
         });
 
         if(!user) return false;
-        store.dispatch(login(user));
+        store.dispatch(loginSuccess({user, token: null}));
         const {isAuthenticated} = store.getState().auth;
         if(!isAuthenticated) return false;
         return true; 

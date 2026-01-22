@@ -1,27 +1,32 @@
 import React, { useState } from 'react'
 import { createShortUrl } from '../api/shortUrl.api'
+import { useQueryClient } from '@tanstack/react-query'
+import { useSelector } from 'react-redux'
 
 const UrlForm = () => {
-  const [longUrl, setLongUrl] = useState('')
+  const [url, setUrl] = useState('')
   const [shortUrl, setShortUrl] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [copied, setCopied] = useState(false)
-  const [url, setUrl] = useState('')
+  const [customSlug, setCustomSlug] = useState('')
+
+  const queryClient = useQueryClient()
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated)
 
   const handleSubmit = async (e) => {
-    const shortUrl = await createShortUrl(url.customSlug)
-    setShortUrl(shortUrl)
     e.preventDefault()
     setLoading(true)
     setError('')
-    setShortUrl('')  
+    setShortUrl('')
     setCopied(false)
-    queryClient.invalidateQueries({queryKey: ['userUrls']})
 
     try {
-      const shortUrl = await createShortUrl(url)
-      setShortUrl(shortUrl)
+      const result = await createShortUrl(url, customSlug || undefined)
+      setShortUrl(result)
+      if (isAuthenticated) {
+        queryClient.invalidateQueries({ queryKey: ['userUrls'] })
+      }
     } catch (error) {
       setError(error.response?.data?.message || "Failed to shorten URL")
     }
@@ -35,9 +40,6 @@ const UrlForm = () => {
       setTimeout(() => setCopied(false), 2000)
     }
   }
-
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
-  const [customSlug, setCustomSlug] = useState('')
 
   return (
     <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
