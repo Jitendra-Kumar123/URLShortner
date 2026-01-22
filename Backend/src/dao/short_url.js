@@ -1,4 +1,3 @@
-import { ConflictError } from "openai"
 import urlSchema from "../models/short_url.model.js"
 export const saveShortUrl = async function (shortUrl, longUrl, userId){
     try{
@@ -7,12 +6,12 @@ export const saveShortUrl = async function (shortUrl, longUrl, userId){
             short_url: shortUrl,
         })
         if(userId){
-            newUrl.user_id = userId
+            newUrl.user = userId
         }
        await newUrl.save()
     }catch(err){
         if(err.code == 11000){
-            throw new ConflictError("Short URL already exists");
+            throw new Error("Short URL already exists");
         }
         throw new Error(err);
         // next(err);
