@@ -18,13 +18,13 @@ app.use(cors({
     credentials: true
 }));
 
-dotenv.config("./.env");
+dotenv.config();
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
-app.use(attachUser)
 app.use(cookieParser())
+app.use(attachUser)
 
 app.use("/api/user", user_routes);
 app.use("/api/auth", auth_routes);
