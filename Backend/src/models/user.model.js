@@ -1,4 +1,6 @@
-import mongoose from "mongoose"
+import mongoose from "mongoose";
+import crypto from "crypto";
+import bcrypt from "bcrypt";
 
 const userSchema = new mongoose.Schema({
     fullName: {
@@ -11,11 +13,11 @@ const userSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        require: true
+        required: true
     },
     avatar: {
         type: String,
-        require: false,
+        required: false,
         default: function(){
             return getGravatarUrl(this.email);
         },
@@ -23,10 +25,11 @@ const userSchema = new mongoose.Schema({
 });
 
 function getGravatarUrl(email){
-    const hash = require('crypto')
+    const hash = crypto
     .createHash('md5')
     .update(email.trim().toLowerCase())
     .digest('hex');
+    return `https://www.gravatar.com/avatar/${hash}?d=identicon`;
 }
 
 const User = mongoose.model("User", userSchema);
