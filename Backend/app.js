@@ -33,7 +33,7 @@ app.get("/:id", redirectFromShortUrl);
 
 app.use(errorHandler);
 
-app.listen(3000, function(req, res){
+app.listen(3000, function(){
     connectDB()
     console.log("Server is running on http://localhost:3000");
 })

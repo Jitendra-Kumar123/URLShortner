@@ -1,5 +1,4 @@
-import { findUserByEmail } from "../dao/user.dao.js";
-import { ConflictError } from "openai";
+import { findUserByEmail, createUser } from "../dao/user.dao.js";
 import { signToken } from "../utils/helper.js";
 
 export const registerUser = async (name, email, password) => {
