@@ -60,13 +60,17 @@ A full-stack URL shortener application built with the MERN stack (MongoDB, Expre
    ```
 
 4. Start the development server:
+
    ```bash
    npm run dev
    ```
+
    The backend will run on `http://localhost:3000`.
 
 ### Frontend Setup
+
 1. Navigate to the Frontend directory:
+
    ```bash
    cd URLShortner/Frontend
    ```
