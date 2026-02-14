@@ -122,4 +122,4 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ## Contact
 
 For any questions or suggestions, please open an issue on GitHub.
-here is my email id : jitendrakumar.dev.cs@gmail.com
+here is my email id : jitendrakumar.dev.cs@gmail.com || jitendra0202006@gmail.com
