@@ -16,6 +16,7 @@ A full-stack URL shortener application built with the MERN stack (MongoDB, Expre
 ## Tech Stack
 
 ### Backend
+
 - **Node.js** with **Express.js** for server-side logic
 - **MongoDB** with **Mongoose** for database management
 - **JWT** for authentication
@@ -26,6 +27,7 @@ A full-stack URL shortener application built with the MERN stack (MongoDB, Expre
 - **Cookie Parser** for handling cookies
 
 ### Frontend
+
 - **React** with **Vite** for fast development and building
 - **Redux Toolkit** for state management
 - **TanStack React Query** for data fetching and caching
@@ -37,22 +39,27 @@ A full-stack URL shortener application built with the MERN stack (MongoDB, Expre
 ## Installation
 
 ### Prerequisites
+
 - Node.js (v14 or higher)
 - MongoDB (local or cloud instance)
 - npm or yarn
 
 ### Backend Setup
+
 1. Navigate to the Backend directory:
+
    ```bash
    cd URLShortner/Backend
    ```
 
 2. Install dependencies:
+
    ```bash
    npm install
    ```
 
 3. Create a `.env` file in the Backend directory with the following variables:
+
    ```
    MONGO_URI=your_mongodb_connection_string
    JWT_SECRET=your_jwt_secret_key
@@ -76,14 +83,17 @@ A full-stack URL shortener application built with the MERN stack (MongoDB, Expre
    ```
 
 2. Install dependencies:
+
    ```bash
    npm install
    ```
 
 3. Start the development server:
+
    ```bash
    npm run dev
    ```
+
    The frontend will run on `http://localhost:5173`.
 
 ## Usage
@@ -96,14 +106,17 @@ A full-stack URL shortener application built with the MERN stack (MongoDB, Expre
 ## API Endpoints
 
 ### Authentication
+
 - `POST /api/auth/login` - User login
 - `POST /api/auth/register` - User registration
 
 ### User Management
+
 - `GET /api/user/profile` - Get user profile
 - `PUT /api/user/profile` - Update user profile
 
 ### URL Shortening
+
 - `POST /api/create` - Create a new shortened URL
 - `GET /api/create/:id` - Get details of a shortened URL
 - `GET /:id` - Redirect to original URL
